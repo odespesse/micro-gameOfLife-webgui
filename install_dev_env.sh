@@ -12,7 +12,11 @@ printf 'Installing Babel...\n'
 docker run -it --rm -v "$PROJECT_DIRECTORY":/usr/src/app -w /usr/src/app node:6.2 npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react
 printf 'Installing Immutable...\n'
 docker run -it --rm -v "$PROJECT_DIRECTORY":/usr/src/app -w /usr/src/app node:6.2 npm install --save immutable
+printf 'Installing React...\n'
+docker run -it --rm -v "$PROJECT_DIRECTORY":/usr/src/app -w /usr/src/app node:6.2 npm install --save react react-dom
 printf '** Tests **\n'
+printf 'Installing React-hot-loader...\n'
+docker run -it --rm -v "$PROJECT_DIRECTORY":/usr/src/app -w /usr/src/app node:6.2 npm install --save-dev react-hot-loader
 printf 'Installing Mocha and Chai...\n'
 docker run -it --rm -v "$PROJECT_DIRECTORY":/usr/src/app -w /usr/src/app node:6.2 npm install --save-dev mocha chai chai-immutable
 printf 'Installing Jsdom...\n'
