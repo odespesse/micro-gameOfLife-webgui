@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default React.createClass({
-    render: function() {
+export default class StartPauseButton extends React.Component {
+    render() {
         return (
             <div>
                 {this.props.isStarted ?
@@ -11,4 +11,4 @@ export default React.createClass({
             </div>
         );
     }
-});
+}

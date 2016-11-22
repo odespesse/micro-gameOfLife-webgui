@@ -2,8 +2,8 @@ import React from 'react';
 import StartPauseButton from './StartPauseButton';
 import Grid from './Grid';
 
-export default React.createClass({
-    render: function() {
+export default class Game extends React.Component{
+    render() {
         return (
             <div>
                 <StartPauseButton startSimulation={this.props.startSimulation}
@@ -12,4 +12,4 @@ export default React.createClass({
             </div>
         );
     }
-});
+}

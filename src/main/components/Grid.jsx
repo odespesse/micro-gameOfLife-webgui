@@ -1,21 +1,21 @@
 import React from 'react';
 
-let GridCell = React.createClass({
-    isAlive: function() {
+class GridCell extends React.Component {
+    isAlive() {
         return this.props.isAlive;
-    },
-    render: function() {
+    }
+    render() {
         return (
             <td>{this.isAlive() ? 1 : 0}</td>
         );
     }
-});
+}
 
-let GridRow = React.createClass({
-    getRow: function() {
+class GridRow extends React.Component {
+    getRow() {
         return this.props.row;
-    },
-    render: function() {
+    }
+    render() {
         let cells = this.getRow().map((cell, index) => {
             return(
                 <GridCell key={index} isAlive={cell} />
@@ -27,13 +27,13 @@ let GridRow = React.createClass({
             </tr>
         );
     }
-});
+}
 
-export default React.createClass({
-    getWorld: function() {
+export default class Grid extends React.Component {
+    getWorld() {
         return this.props.world || [];
-    },
-    render: function() {
+    }
+    render() {
         let rows = this.getWorld().map((row, index) => {
             return (
                 <GridRow key={index} row={row} />
@@ -47,4 +47,4 @@ export default React.createClass({
             </table>
         );
     }
-});
+};
