@@ -4,15 +4,16 @@ import {
     renderIntoDocument,
     scryRenderedDOMComponentsWithTag
 } from 'react-addons-test-utils';
+import {List} from 'immutable';
 import Grid from '../../main/components/Grid';
 import {expect} from 'chai';
 
 describe('Grid', () => {
 
     it('Render a dead cell', () => {
-        const WORLD=[
-            [0]
-        ];
+        const WORLD= List.of(
+            List.of(0)
+        );
         const component = renderIntoDocument(
             <Grid world={WORLD} />
         );
@@ -24,10 +25,10 @@ describe('Grid', () => {
     });
 
     it('Render a complex world', () => {
-        const WORLD=[
-            [0, 0, 1],
-            [1, 1, 0],
-        ];
+        const WORLD= List.of(
+            List.of(0, 0, 1),
+            List.of(1, 1, 0),
+        );
         const component = renderIntoDocument(
             <Grid world={WORLD} />
         );
