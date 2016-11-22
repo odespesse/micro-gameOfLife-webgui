@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Grid from './components/Grid';
+import Game from './components/Game';
 
 const WORLD = [
     [false, false, false, true],
@@ -10,7 +10,7 @@ const WORLD = [
 ];
 
 ReactDOM.render(
-    <Grid world={WORLD} />,
+    <Game world={WORLD} />,
     document.getElementById('app')
 );
 
