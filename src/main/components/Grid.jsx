@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 class GridCell extends React.Component {
     isAlive() {
@@ -29,7 +30,7 @@ class GridRow extends React.Component {
     }
 }
 
-export default class Grid extends React.Component {
+export class Grid extends React.Component {
     getWorld() {
         return this.props.world || [];
     }
@@ -48,3 +49,12 @@ export default class Grid extends React.Component {
         );
     }
 };
+
+function mapStateToProps(state) {
+    console.log(state);
+  return {
+    world: state.getIn(['grid', 'currentWorld']),
+  };
+}
+
+export const GridContainer = connect(mapStateToProps)(Grid);

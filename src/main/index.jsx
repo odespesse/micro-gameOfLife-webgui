@@ -1,19 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux'
+import reducer from './reducers/reducer'
 import Game from './components/Game';
+import {List, Map} from 'immutable';
 
-const WORLD = [
-    [false, false, false, true],
-    [true, true, true, false],
-    [false, true, false, true],
-    [false, false, false, true],
-];
+const store = createStore(reducer);
+store.dispatch({
+    type: 'SET_STATE',
+    state: Map({
+        grid: Map({
+            currentWorld:
+                List.of(
+                    List.of(false, false, false, true),
+                    List.of(true, true, true, false),
+                    List.of(false, true, false, true),
+                    List.of(false, false, false, true),
+                )
+        }),
+    }),
+});
 
 ReactDOM.render(
-    <Game world={WORLD} />,
+    <Provider store={store}>
+        <Game />
+    </Provider>,
     document.getElementById('app')
 );
 
 if (module.hot) {
-    module.hot.accept();
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('./reducers/reducer', () => {
+      const nextRootReducer = require('./reducers/reducer');
+      store.replaceReducer(nextRootReducer);
+    });
 }

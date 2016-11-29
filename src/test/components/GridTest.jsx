@@ -5,7 +5,7 @@ import {
     scryRenderedDOMComponentsWithTag
 } from 'react-addons-test-utils';
 import {List} from 'immutable';
-import Grid from '../../main/components/Grid';
+import {Grid} from '../../main/components/Grid';
 import {expect} from 'chai';
 
 describe('Grid', () => {
