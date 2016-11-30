@@ -1,3 +1,4 @@
+import {setState} from '../../main/reducers/action_creators';
 import {List, Map, fromJS} from 'immutable';
 import {expect} from 'chai';
 
@@ -7,9 +8,8 @@ describe('reducer', () => {
 
     it('handles SET_STATE with plain JS object', () => {
         const initialState = Map();
-        const action = {
-            type: 'SET_STATE',
-            state: Map({
+        const action = setState(
+            Map({
                 grid: Map({
                     currentWorld:
                         List.of(
@@ -18,7 +18,7 @@ describe('reducer', () => {
                         )
                 }),
             }),
-        }
+        );
 
         const nextState = reducer(initialState, action);
         expect(nextState).to.equal(fromJS({
@@ -32,9 +32,8 @@ describe('reducer', () => {
     });
 
     it('handles SET_STATE without initialState', () => {
-       const action = {
-            type: 'SET_STATE',
-            state: Map({
+       const action = setState(
+            Map({
                 grid: Map({
                     currentWorld:
                         List.of(
@@ -43,7 +42,7 @@ describe('reducer', () => {
                         )
                 }),
             }),
-        }
+        );
 
         const nextState = reducer(undefined, action);
         expect(nextState).to.equal(fromJS({

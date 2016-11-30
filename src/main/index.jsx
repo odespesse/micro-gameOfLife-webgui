@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from 'redux';
-import {Provider} from 'react-redux'
-import reducer from './reducers/reducer'
+import {Provider} from 'react-redux';
+import reducer from './reducers/reducer';
+import {setState} from './reducers/action_creators';
 import Game from './components/Game';
 import {List, Map} from 'immutable';
 
 const store = createStore(reducer);
-store.dispatch({
-    type: 'SET_STATE',
-    state: Map({
+store.dispatch(setState(
+    Map({
         grid: Map({
             currentWorld:
                 List.of(
@@ -20,7 +20,7 @@ store.dispatch({
                 )
         }),
     }),
-});
+));
 
 ReactDOM.render(
     <Provider store={store}>
