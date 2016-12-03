@@ -4,7 +4,7 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from './reducers/reducer';
 import {setState} from './reducers/action_creators';
-import Game from './components/Game';
+import {GameContainer} from './components/Game';
 import {List, Map} from 'immutable';
 
 const store = createStore(reducer);
@@ -24,7 +24,7 @@ store.dispatch(setState(
 
 ReactDOM.render(
     <Provider store={store}>
-        <Game />
+        <GameContainer />
     </Provider>,
     document.getElementById('app')
 );
