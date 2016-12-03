@@ -1,21 +1,31 @@
-import {Map} from 'immutable';
+import {Map,List} from 'immutable';
 
-function setState(state, newState) {
-    return state.merge(newState);
+function currentWorld(state = List(), action) {
+    switch (action.type) {
+        case 'SET_WORLD':
+            return action.world.get('world');
+        default:
+            return state;
+    }
 }
 
-function changeSimulationState(state, newSimulationState) {
-    return state.set('isSimulationStarted', newSimulationState);
+function isSimulationStarted(state = false, action) {
+    switch (action.type) {
+        case 'START_SIMULATION':
+            return true;
+        case 'PAUSE_SIMULATION':
+            return false;
+        default:
+            return state;
+    }
 }
 
 export default function(state = Map(), action) {
-    switch (action.type) {
-        case 'SET_STATE':
-            return setState(state, action.state);
-        case 'START_SIMULATION':
-            return changeSimulationState(state, action.isSimulationStarted);
-        case 'PAUSE_SIMULATION':
-            return changeSimulationState(state, action.isSimulationStarted);
-    }
-    return state;
+    const gridProp = state.get('grid', Map());
+    return Map({
+        isSimulationStarted: isSimulationStarted(state.get('isSimulationStarted'), action),
+        grid: gridProp.merge({
+            currentWorld: currentWorld(gridProp.get('currentWorld'), action),
+        }),
+    });
 }

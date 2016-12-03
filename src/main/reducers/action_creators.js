@@ -1,20 +1,18 @@
-export function setState(state) {
+export function setWorld(world) {
     return {
-        type: 'SET_STATE',
-        state: state,
+        type: 'SET_WORLD',
+        world: world,
     }
 };
 
 export function startSimulation() {
     return {
         type: 'START_SIMULATION',
-        isSimulationStarted: true,
     }
 };
 
 export function pauseSimulation() {
     return {
         type: 'PAUSE_SIMULATION',
-        isSimulationStarted: false,
     }
 };
