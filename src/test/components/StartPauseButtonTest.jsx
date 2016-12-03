@@ -14,7 +14,7 @@ describe('StartPauseButton', () => {
         let started = false;
         const startCbk = () => started = true;
         const component = renderIntoDocument(
-            <StartPauseButton isStarted = {started}
+            <StartPauseButton isSimulationStarted={started}
                   startSimulation={startCbk} />
         );
 
@@ -28,7 +28,7 @@ describe('StartPauseButton', () => {
         let started = true;
         const pauseCbk = () => started = false;
         const component = renderIntoDocument(
-            <StartPauseButton isStarted = {started}
+            <StartPauseButton isSimulationStarted={started}
                   pauseSimulation={pauseCbk} />
         );
 
