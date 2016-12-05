@@ -1,7 +1,7 @@
-export function setWorld(world) {
+export function setGrid(grid) {
     return {
-        type: 'SET_WORLD',
-        world: world,
+        type: 'SET_GRID',
+        grid: grid,
     }
 };
 

@@ -1,9 +1,9 @@
 import {Map,List} from 'immutable';
 
-function currentWorld(state = List(), action) {
+function grid(state = Map(), action) {
     switch (action.type) {
-        case 'SET_WORLD':
-            return action.world.get('world');
+        case 'SET_GRID':
+            return action.grid;
         default:
             return state;
     }
@@ -21,11 +21,8 @@ function isSimulationStarted(state = false, action) {
 }
 
 export default function(state = Map(), action) {
-    const gridProp = state.get('grid', Map());
     return Map({
         isSimulationStarted: isSimulationStarted(state.get('isSimulationStarted'), action),
-        grid: gridProp.merge({
-            currentWorld: currentWorld(gridProp.get('currentWorld'), action),
-        }),
+        grid: grid(state.get('grid'), action),
     });
 }
