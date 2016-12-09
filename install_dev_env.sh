@@ -15,7 +15,7 @@ docker run -it --rm -v "$PROJECT_DIRECTORY":/usr/src/app -w /usr/src/app node:6.
 printf 'Installing React...\n'
 docker run -it --rm -v "$PROJECT_DIRECTORY":/usr/src/app -w /usr/src/app node:6.2 npm install --save react react-dom
 printf 'Installing Redux...\n'
-docker run -it --rm -v "$PROJECT_DIRECTORY":/usr/src/app -w /usr/src/app node:6.2 npm install --save redux react-redux
+docker run -it --rm -v "$PROJECT_DIRECTORY":/usr/src/app -w /usr/src/app node:6.2 npm install --save redux react-redux redux-thunk
 printf '** Tests **\n'
 printf 'Installing React-hot-loader...\n'
 docker run -it --rm -v "$PROJECT_DIRECTORY":/usr/src/app -w /usr/src/app node:6.2 npm install --save-dev react-hot-loader

@@ -1,21 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
+import thunkMiddleware from 'redux-thunk'
 import reducer from './reducers/reducer';
 import {setGrid} from './reducers/action_creators';
 import {GameContainer} from './components/Game';
 import {List, Map} from 'immutable';
 
-const store = createStore(reducer);
+const store = createStore(
+    reducer,
+    applyMiddleware(
+        thunkMiddleware
+    ));
 store.dispatch(setGrid(
     Map({
         generation: 0,
         currentWorld: List.of(
-            List.of(false, false, false, true),
-            List.of(true, true, true, false),
-            List.of(false, true, false, true),
-            List.of(false, false, false, true),
+            List.of(false, false, false, false, false, false),
+            List.of(false, false, false, false, false, false),
+            List.of(false, false, true, true, true, false),
+            List.of(false, true, true, true, false, false),
+            List.of(false, false, false, false, false, false),
+            List.of(false, false, false, false, false, false),
         ),
     }),
 ));
