@@ -1,12 +1,16 @@
 import React from 'react';
 
+require('./grid.css');
+
 class GridCell extends React.Component {
     isAlive() {
         return this.props.isAlive;
     }
     render() {
         return (
-            <td>{this.isAlive() ? 1 : 0}</td>
+            <td>
+                <button className={this.isAlive() ? "cell alive" : "cell"} disabled></button>
+            </td>
         );
     }
 }
@@ -40,11 +44,13 @@ export default class Grid extends React.Component {
             );
         }, this);
         return (
-            <table>
-                <tbody>
-                    {rows}
-                </tbody>
-            </table>
+            <div className="col-sm-3">
+                <table>
+                    <tbody>
+                        {rows}
+                    </tbody>
+                </table>
+            </div>
         );
     }
 };

@@ -16,10 +16,15 @@ export class Game extends React.Component{
     render() {
         return (
             <div>
-                <StartPauseButton startSimulation={this.handleStart}
-                    pauseSimulation={this.props.pauseSimulation}
-                    isSimulationStarted={this.props.isSimulationStarted}/>
-                <Grid world={this.props.world}/>
+                <div className="row">
+                    <h1>The Game of Life</h1>
+                </div>
+                <div className="row">
+                    <Grid world={this.props.world}/>
+                    <StartPauseButton startSimulation={this.handleStart}
+                        pauseSimulation={this.props.pauseSimulation}
+                        isSimulationStarted={this.props.isSimulationStarted}/>
+                </div>
             </div>
         );
     }
