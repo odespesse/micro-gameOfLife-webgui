@@ -18,10 +18,10 @@ describe('Grid', () => {
             <Grid world={WORLD} />
         );
 
-        const tds = scryRenderedDOMComponentsWithTag(component, 'td');
+        const buttons = scryRenderedDOMComponentsWithTag(component, 'button');
 
-        expect(tds.length).to.equal(1);
-        expect(tds[0].textContent).to.equal('0');
+        expect(buttons.length).to.equal(1);
+        expect(buttons[0].classList.value).to.equal('cell');
     });
 
     it('Render a complex world', () => {
@@ -36,12 +36,12 @@ describe('Grid', () => {
         const trs = scryRenderedDOMComponentsWithTag(component, 'tr');
         expect(trs.length).to.equal(2);
 
-        const tds = scryRenderedDOMComponentsWithTag(component, 'td');
-        expect(tds[0].textContent).to.equal('0');
-        expect(tds[1].textContent).to.equal('0');
-        expect(tds[2].textContent).to.equal('1');
-        expect(tds[3].textContent).to.equal('1');
-        expect(tds[4].textContent).to.equal('1');
-        expect(tds[5].textContent).to.equal('0');
+        const buttons = scryRenderedDOMComponentsWithTag(component, 'button');
+        expect(buttons[0].classList.value).to.equal('cell');
+        expect(buttons[1].classList.value).to.equal('cell');
+        expect(buttons[2].classList.value).to.equal('cell alive');
+        expect(buttons[3].classList.value).to.equal('cell alive');
+        expect(buttons[4].classList.value).to.equal('cell alive');
+        expect(buttons[5].classList.value).to.equal('cell');
     });
 });
