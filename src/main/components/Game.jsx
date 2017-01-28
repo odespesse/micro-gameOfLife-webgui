@@ -11,7 +11,7 @@ export class Game extends React.Component{
     }
     handleStart() {
         this.props.startSimulation();
-        this.props.fetchGrid();
+        this.props.fetchWorld();
     }
     render() {
         return (
@@ -20,7 +20,7 @@ export class Game extends React.Component{
                     <h1>The Game of Life</h1>
                 </div>
                 <div className="row">
-                    <Grid world={this.props.world}/>
+                    <Grid grid={this.props.grid}/>
                     <StartPauseButton startSimulation={this.handleStart}
                         pauseSimulation={this.props.pauseSimulation}
                         isSimulationStarted={this.props.isSimulationStarted}/>
@@ -32,7 +32,7 @@ export class Game extends React.Component{
 
 function mapStateToProps(state) {
   return {
-    world: state.getIn(['grid', 'currentWorld']),
+    grid: state.getIn(['world', 'grid']),
     isSimulationStarted: state.get('isSimulationStarted'),
   };
 }

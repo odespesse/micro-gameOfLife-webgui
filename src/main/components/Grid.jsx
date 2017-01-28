@@ -34,11 +34,11 @@ class GridRow extends React.Component {
 }
 
 export default class Grid extends React.Component {
-    getWorld() {
-        return this.props.world || [];
+    getGrid() {
+        return this.props.grid || [];
     }
     render() {
-        let rows = this.getWorld().map((row, index) => {
+        let rows = this.getGrid().map((row, index) => {
             return (
                 <GridRow key={index} row={row} />
             );

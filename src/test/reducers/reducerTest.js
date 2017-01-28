@@ -1,4 +1,4 @@
-import {setGrid, startSimulation, pauseSimulation} from '../../main/reducers/action_creators';
+import {setWorld, startSimulation, pauseSimulation} from '../../main/reducers/action_creators';
 import {List, Map, fromJS} from 'immutable';
 import {expect} from 'chai';
 
@@ -6,12 +6,12 @@ import reducer from '../../main/reducers/reducer';
 
 describe('reducer', () => {
 
-    it('handles SET_GRID with plain JS object', () => {
+    it('handles SET_WORLD with plain JS object', () => {
         const initialState = Map();
-        const action = setGrid(
+        const action = setWorld(
             Map({
                 generation: 3,
-                currentWorld: List.of(
+                grid: List.of(
                     List.of(false, false, true),
                     List.of(true, true, false),
                 ),
@@ -21,9 +21,9 @@ describe('reducer', () => {
         const nextState = reducer(initialState, action);
         expect(nextState).to.equal(fromJS({
             isSimulationStarted: false,
-            grid: {
+            world: {
                 generation: 3,
-                currentWorld: [
+                grid: [
                     [false, false, true],
                     [true, true, false],
                 ]
@@ -32,10 +32,10 @@ describe('reducer', () => {
     });
 
     it('handles SET_WORLD without initialState', () => {
-       const action = setGrid(
+       const action = setWorld(
             Map({
                 generation: 0,
-                currentWorld: List.of(
+                grid: List.of(
                     List.of(false, false, false),
                     List.of(false, false, false),
                 ),
@@ -45,9 +45,9 @@ describe('reducer', () => {
         const nextState = reducer(undefined, action);
         expect(nextState).to.equal(fromJS({
             isSimulationStarted: false,
-            grid: {
+            world: {
                 generation: 0,
-                currentWorld: [
+                grid: [
                     [false, false, false],
                     [false, false, false],
                 ]
@@ -58,9 +58,9 @@ describe('reducer', () => {
     it('start a paused game', () => {
         const initialState = Map({
             isSimulationStarted: false,
-            grid: Map({
+            world: Map({
                 generation: 0,
-                currentWorld:
+                grid:
                     List.of(
                         List.of(false, false, true),
                         List.of(true, true, false),
@@ -72,9 +72,9 @@ describe('reducer', () => {
         const nextState = reducer(initialState, action);
         expect(nextState).to.equal(fromJS({
             isSimulationStarted: true,
-            grid: {
+            world: {
                 generation: 0,
-                currentWorld: [
+                grid: [
                     [false, false, true],
                     [true, true, false],
                 ]
@@ -91,7 +91,7 @@ describe('reducer', () => {
         const nextState = reducer(initialState, action);
         expect(nextState).to.equal(fromJS({
             isSimulationStarted: false,
-            grid: {},
+            world: {},
         }));
     });
 });

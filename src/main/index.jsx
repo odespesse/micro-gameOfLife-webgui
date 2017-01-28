@@ -4,7 +4,7 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunkMiddleware from 'redux-thunk'
 import reducer from './reducers/reducer';
-import {setGrid} from './reducers/action_creators';
+import {setWorld} from './reducers/action_creators';
 import {GameContainer} from './components/Game';
 import {List, Map} from 'immutable';
 
@@ -13,10 +13,10 @@ const store = createStore(
     applyMiddleware(
         thunkMiddleware
     ));
-store.dispatch(setGrid(
+store.dispatch(setWorld(
     Map({
         generation: 0,
-        currentWorld: List.of(
+        grid: List.of(
             List.of(false, false, false, false, false, false),
             List.of(false, false, false, false, false, false),
             List.of(false, false, true, true, true, false),

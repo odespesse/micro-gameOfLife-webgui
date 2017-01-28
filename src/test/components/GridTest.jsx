@@ -11,11 +11,11 @@ import {expect} from 'chai';
 describe('Grid', () => {
 
     it('Render a dead cell', () => {
-        const WORLD= List.of(
+        const GRID = List.of(
             List.of(0)
         );
         const component = renderIntoDocument(
-            <Grid world={WORLD} />
+            <Grid grid={GRID} />
         );
 
         const buttons = scryRenderedDOMComponentsWithTag(component, 'button');
@@ -24,13 +24,13 @@ describe('Grid', () => {
         expect(buttons[0].classList.value).to.equal('cell');
     });
 
-    it('Render a complex world', () => {
-        const WORLD= List.of(
+    it('Render a complex grid', () => {
+        const GRID = List.of(
             List.of(0, 0, 1),
             List.of(1, 1, 0),
         );
         const component = renderIntoDocument(
-            <Grid world={WORLD} />
+            <Grid grid={GRID} />
         );
 
         const trs = scryRenderedDOMComponentsWithTag(component, 'tr');

@@ -1,9 +1,9 @@
 import {Map,List} from 'immutable';
 
-export function setGrid(grid) {
+export function setWorld(world) {
     return {
-        type: 'SET_GRID',
-        grid: grid,
+        type: 'SET_WORLD',
+        world: world,
     }
 };
 
@@ -19,12 +19,12 @@ export function pauseSimulation() {
     }
 };
 
-export function fetchGrid() {
+export function fetchWorld() {
     return (dispatch, getState) => {
         if (!getState().get('isSimulationStarted')) {
             return;
         }
-        let generation = getState().get('grid').get('generation');
+        let generation = getState().get('world').get('generation');
         let world = null;
         if (generation % 2 === 0) {
             world = List.of(
@@ -46,12 +46,12 @@ export function fetchGrid() {
             );
         }
         setTimeout(() => {
-            dispatch(setGrid(
+            dispatch(setWorld(
                 Map({
                     generation: generation + 1,
-                    currentWorld: world,
+                    world: world,
                 })))
-            dispatch(fetchGrid());
+            dispatch(fetchWorld());
             },
             800
         );
