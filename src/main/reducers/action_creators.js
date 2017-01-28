@@ -1,4 +1,5 @@
 import {Map,List} from 'immutable';
+import axios from 'axios';
 
 export function setWorld(world) {
     return {
@@ -24,36 +25,23 @@ export function fetchWorld() {
         if (!getState().get('isSimulationStarted')) {
             return;
         }
-        let generation = getState().get('world').get('generation');
-        let world = null;
-        if (generation % 2 === 0) {
-            world = List.of(
-                List.of(false, false, false, false, false, false),
-                List.of(false, false, false, true, false, false),
-                List.of(false, true, false, false, true, false),
-                List.of(false, true, false, false, true, false),
-                List.of(false, false, true, false, false, false),
-                List.of(false, false, false, false, false, false),
-            );
-        } else {
-            world = List.of(
-                List.of(false, false, false, false, false, false),
-                List.of(false, false, false, false, false, false),
-                List.of(false, false, true, true, true, false),
-                List.of(false, true, true, true, false, false),
-                List.of(false, false, false, false, false, false),
-                List.of(false, false, false, false, false, false),
-            );
-        }
+        let httpClient = axios.create({
+            baseURL: 'http://localhost:8080/v1.0/',
+        });
         setTimeout(() => {
-            dispatch(setWorld(
-                Map({
-                    generation: generation + 1,
-                    world: world,
-                })))
-            dispatch(fetchWorld());
-            },
-            800
-        );
+            httpClient.post('/world/next', {
+                generation: getState().get('world').get('generation'),
+                grid: getState().get('world').get('grid'),
+            })
+            .then(function(response) {
+                dispatch(setWorld(
+                    Map({
+                        generation: response.data.generation,
+                        grid: response.data.grid,
+                    })
+                ));
+                dispatch(fetchWorld());
+            });
+        }, 800);
     };
 }

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "axios": "^0.15.3",
     "immutable": "^3.8.1",
     "react": "^15.4.2",
     "react-addons-test-utils": "^15.4.2",
