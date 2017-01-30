@@ -8,17 +8,17 @@ module.exports = {
         './src/main/index.jsx',
     ],
     module: {
-        loaders: [{
+        rules: [{
             test: /\.jsx?$/,
             exclude: /node_modules/,
-            loaders: ["babel-loader"]
+            use: ['babel-loader'],
         }, {
             test: /\.css$/,
-            loader: 'style!css'
+            use: ['style-loader', 'css-loader'],
         }]
     },
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['.js', '.jsx']
     },
     output: {
         path: path.join(__dirname, '/dist'),
@@ -28,7 +28,8 @@ module.exports = {
     devServer: {
         contentBase: './dist',
         host: '0.0.0.0',
-        hot: true
+        hot: true,
+        port: 8080,
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()
