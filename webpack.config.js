@@ -1,8 +1,9 @@
-var path = require('path');
-var webpack = require('webpack');
+const { resolve } = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     entry: [
+        './node_modules/react-hot-loader/patch',
         './node_modules/webpack-dev-server/client?http://0.0.0.0:8080',
         './node_modules/webpack/hot/only-dev-server',
         './src/main/index.jsx',
@@ -21,17 +22,19 @@ module.exports = {
         extensions: ['.js', '.jsx']
     },
     output: {
-        path: path.join(__dirname, '/dist'),
+        path: resolve(__dirname, 'dist'),
         publicPath: '/',
         filename: 'bundle.js'
     },
     devServer: {
-        contentBase: './dist',
+        contentBase: resolve(__dirname, 'dist'),
+        publicPath: 'http://0.0.0.0:8080/',
         host: '0.0.0.0',
         hot: true,
-        port: 8080,
+        inline: true,
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
     ]
 };

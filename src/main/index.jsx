@@ -1,43 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore, applyMiddleware} from 'redux';
-import {Provider} from 'react-redux';
-import thunkMiddleware from 'redux-thunk'
-import reducer from './reducers/reducer';
-import {setWorld} from './reducers/action_creators';
-import {GameContainer} from './components/Game';
-import {List, Map} from 'immutable';
+import { AppContainer } from 'react-hot-loader';
 
-const store = createStore(
-    reducer,
-    applyMiddleware(
-        thunkMiddleware
-    ));
-store.dispatch(setWorld(
-    Map({
-        generation: 0,
-        grid: List.of(
-            List.of(false, false, false, false, false, false),
-            List.of(false, false, false, false, false, false),
-            List.of(false, false, true, true, true, false),
-            List.of(false, true, true, true, false, false),
-            List.of(false, false, false, false, false, false),
-            List.of(false, false, false, false, false, false),
-        ),
-    }),
-));
+import App from './app'
 
-ReactDOM.render(
-    <Provider store={store}>
-        <GameContainer />
-    </Provider>,
+const render = (Component) => {
+  ReactDOM.render(
+    <AppContainer>
+      <Component/>
+    </AppContainer>,
     document.getElementById('app')
-);
+  );
+};
+
+render(App);
 
 if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept('./reducers/reducer', () => {
-      const nextRootReducer = require('./reducers/reducer');
-      store.replaceReducer(nextRootReducer);
+    module.hot.accept('./app', () => {
+        render(App)
     });
 }
