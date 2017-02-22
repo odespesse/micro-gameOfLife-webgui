@@ -1,4 +1,4 @@
-import {Map,List} from 'immutable';
+import {Map,List,fromJS} from 'immutable';
 import axios from 'axios';
 
 export function setWorld(world) {
@@ -37,7 +37,7 @@ export function fetchWorld() {
                 dispatch(setWorld(
                     Map({
                         generation: response.data.generation,
-                        grid: response.data.grid,
+                        grid: fromJS(response.data.grid),
                     })
                 ));
                 dispatch(fetchWorld());
