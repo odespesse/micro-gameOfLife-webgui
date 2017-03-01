@@ -9,7 +9,9 @@ class GridCell extends React.Component {
     render() {
         return (
             <td>
-                <button className={this.isAlive() ? "cell alive" : "cell"} disabled></button>
+                <button className={this.isAlive() ? "cell alive" : "cell"}
+                        onClick={() => this.props.flipCellState(this.props.rowIndex, this.props.columnIndex)}>
+                </button>
             </td>
         );
     }
@@ -22,7 +24,13 @@ class GridRow extends React.Component {
     render() {
         let cells = this.getRow().map((cell, index) => {
             return(
-                <GridCell key={index} isAlive={cell} />
+                <GridCell
+                    key={index}
+                    isAlive={cell}
+                    flipCellState={this.props.flipCellState}
+                    rowIndex={this.props.rowIndex}
+                    columnIndex={index}
+                />
             );
         }, this);
         return (
@@ -40,7 +48,12 @@ export default class Grid extends React.Component {
     render() {
         let rows = this.getGrid().map((row, index) => {
             return (
-                <GridRow key={index} row={row} />
+                <GridRow
+                    key={index}
+                    row={row}
+                    rowIndex={index}
+                    flipCellState={this.props.flipCellState}
+                />
             );
         }, this);
         return (

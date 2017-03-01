@@ -8,6 +8,16 @@ export function setWorld(world) {
     }
 };
 
+export function flipCellState(row, column) {
+    return {
+        type: 'FLIP_CELL_STATE',
+        cellPosition: Map({
+            row: row,
+            column: column
+        }),
+    }
+};
+
 export function startSimulation() {
     return {
         type: 'START_SIMULATION',
@@ -26,7 +36,7 @@ export function fetchWorld() {
             return;
         }
         let httpClient = axios.create({
-            baseURL: 'http://localhost:8080/v1.0/',
+            baseURL: 'http://localhost:80/v1.0/',
         });
         setTimeout(() => {
             httpClient.post('/world/next', {

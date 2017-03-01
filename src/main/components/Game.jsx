@@ -20,7 +20,7 @@ export class Game extends React.Component{
                     <h1>The Game of Life</h1>
                 </div>
                 <div className="row">
-                    <Grid grid={this.props.grid}/>
+                    <Grid grid={this.props.grid} flipCellState={this.props.flipCellState}/>
                     <StartPauseButton startSimulation={this.handleStart}
                         pauseSimulation={this.props.pauseSimulation}
                         isSimulationStarted={this.props.isSimulationStarted}/>
