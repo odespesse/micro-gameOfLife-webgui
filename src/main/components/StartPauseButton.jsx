@@ -2,21 +2,16 @@ import React from 'react';
 
 export default class StartPauseButton extends React.Component {
     render() {
+        let clsBtn = this.props.isSimulationStarted ? "btn btn-warning btn-block active" : "btn btn-success btn-block";
+        let clsIcon = this.props.isSimulationStarted ? "glyphicon glyphicon-pause" : "glyphicon glyphicon-play";
+        let text = this.props.isSimulationStarted ? 'Pause' : 'Start';
         return (
-            <div className="col-sm-2">
-                {this.props.isSimulationStarted ?
-                    <button type="button"
-                        onClick={() => this.props.pauseSimulation()}
-                        className="btn btn-warning btn-block active" aria-label="Left Align">
-                        <span className="glyphicon glyphicon-pause" aria-hidden="true"></span> Pause
-                    </button> :
-                    <button type="button"
-                        onClick={() => this.props.startSimulation()}
-                        className="btn btn-success btn-block" aria-label="Left Align">
-                        <span className="glyphicon glyphicon-play" aria-hidden="true"></span> Start
-                    </button>
-                }
-            </div>
+            <button type="button"
+                onClick={() => this.props.isSimulationStarted ? this.props.pauseSimulation() : this.props.startSimulation()}
+                className={clsBtn} aria-label="Left Align">
+                <span className={clsIcon} aria-hidden="true"></span>
+                {text}
+            </button>
         );
     }
 }

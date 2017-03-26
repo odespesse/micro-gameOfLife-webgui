@@ -12,6 +12,11 @@ function world(state = Map(), action) {
                 generation: state.get('generation'),
                 grid: state.get('grid').setIn([row, column], Math.pow(previousCellState - 1, 2)),
             });
+        case 'RESET_SIMULATION':
+            return Map({
+                generation: 0,
+                grid: state.get('grid').map((row) => {return row.map(() => false)}),
+            });
         default:
             return state;
     }

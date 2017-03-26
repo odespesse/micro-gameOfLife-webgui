@@ -29,5 +29,7 @@ printf 'Installing Jsdom...\n'
 docker run -it --rm -v "$PROJECT_DIRECTORY":/usr/src/app -w /usr/src/app node:6.2 npm install --save-dev jsdom
 printf 'Installing Ignore-styles...\n'
 docker run -it --rm -v "$PROJECT_DIRECTORY":/usr/src/app -w /usr/src/app node:6.2 npm install --save-dev ignore-styles
+printf 'Installing Enzyme...\n'
+docker run -it --rm -v "$PROJECT_DIRECTORY":/usr/src/app -w /usr/src/app node:6.2 npm install --save-dev enzyme
 
 sudo chown -R $USER:$USER "$PROJECT_DIRECTORY"/{node_modules,package.json,webpack.config.js}

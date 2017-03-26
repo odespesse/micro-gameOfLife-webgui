@@ -30,6 +30,12 @@ export function pauseSimulation() {
     }
 };
 
+export function resetSimulation() {
+    return {
+        type: 'RESET_SIMULATION',
+    };
+}
+
 export function fetchWorld() {
     return (dispatch, getState) => {
         if (!getState().get('isSimulationStarted')) {
