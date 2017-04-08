@@ -57,13 +57,11 @@ export default class Grid extends React.Component {
             );
         }, this);
         return (
-            <div className="col-sm-3">
-                <table>
-                    <tbody>
-                        {rows}
-                    </tbody>
-                </table>
-            </div>
+            <table>
+                <tbody>
+                    {rows}
+                </tbody>
+            </table>
         );
     }
 };

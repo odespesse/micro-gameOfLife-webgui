@@ -12,17 +12,23 @@ const store = createStore(
     applyMiddleware(
         thunkMiddleware
     ));
+
+let height = screen.height / 45;
+let width = (screen.width - 150) / 36;
+
+let grid = List();
+for (let i = 0; i < height; i++) {
+    let row = List();
+    for (let j = 0; j < width; j++) {
+        row = row.push(false);
+    }
+    grid = grid.push(row);
+}
+
 store.dispatch(setWorld(
     Map({
         generation: 0,
-        grid: List.of(
-            List.of(false, false, false, false, false, false),
-            List.of(false, false, false, false, false, false),
-            List.of(false, false, true, true, true, false),
-            List.of(false, true, true, true, false, false),
-            List.of(false, false, false, false, false, false),
-            List.of(false, false, false, false, false, false),
-        ),
+        grid: grid,
     }),
 ));
 
