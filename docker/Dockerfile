@@ -5,14 +5,15 @@
 #   in a container with all dependencies installed.
 # USAGE:
 #   # Build image
-#   docker build -t mgol-webgui: .
+#   docker build -t mgol-webgui:<VERSION> .
 #
 #   # Run service
-#   docker run --name mgol-webgui: -d mgol-webgui
+#   docker run --name mgol-webgui -d -p 80:80 mgol-webgui:<VERSION>
 #
 
 # Base docker image
-FROM nginx:1.11
+FROM nginx:1.13.3-alpine
 MAINTAINER Olivier Despesse <olived19@gmail.com>
 
+COPY vhost.conf /etc/nginx/conf.d/default.conf
 COPY dist/ /usr/share/nginx/html
