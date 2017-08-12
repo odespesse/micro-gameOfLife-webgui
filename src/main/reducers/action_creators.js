@@ -42,7 +42,7 @@ export function fetchWorld() {
             return;
         }
         let httpClient = axios.create({
-            baseURL: 'http://localhost:80/v1.0/',
+            baseURL: 'http://localhost:80/api/v1.0/',
         });
         setTimeout(() => {
             httpClient.post('/world/next', {
