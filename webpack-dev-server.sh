@@ -10,7 +10,7 @@ if [ $ACTION == "start" ] ; then
         -v "$PWD":/usr/src/app \
         -w /usr/src/app \
         -p 8080:8080 \
-        node:6.10.3-alpine \
+        node:14.0.0-alpine \
         node_modules/webpack-dev-server/bin/webpack-dev-server.js
 elif [ $ACTION == "stop" ] ; then
     docker stop $CONTAINER_NAME && docker rm $CONTAINER_NAME

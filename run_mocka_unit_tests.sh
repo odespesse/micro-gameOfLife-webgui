@@ -7,5 +7,5 @@ docker run \
     --name ${CONTAINER_NAME} \
     -v "$PWD":/usr/src/app \
     -w /usr/src/app \
-    node:6.10.3-alpine \
+    node:14.0.0-alpine \
     npm run test

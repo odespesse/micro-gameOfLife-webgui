@@ -12,7 +12,7 @@
 #
 
 # Base docker image
-FROM nginx:1.13.3-alpine
+FROM nginx:1.18.0-alpine
 MAINTAINER Olivier Despesse <olived19@gmail.com>
 
 COPY vhost.conf /etc/nginx/conf.d/default.conf
