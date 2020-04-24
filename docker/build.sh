@@ -4,9 +4,9 @@ VERSION=$1
 
 docker run \
     --rm \
-    -v "$PWD/..":/usr/src/app \
+    -v "$(pwd)/..":/usr/src/app \
     -w /usr/src/app \
-    node:6.10.3-alpine \
+    node:14.0.0-alpine \
     node_modules/webpack/bin/webpack.js --optimize-minimize --define process.env.NODE_ENV="'production'"
 
 cp -pr "../dist" .
